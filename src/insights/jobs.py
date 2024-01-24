@@ -47,5 +47,36 @@ class ProcessJobs:
 
         return list(unique_job_types)
 
-    def filter_by_multiple_criteria(self) -> List[dict]:
-        pass
+    def filter_by_multiple_criteria(
+        self, jobs, filter_criteria: Dict
+    ) -> List[Dict]:
+        """
+        Filtra uma lista de empregos por múltiplos critérios.
+
+        Args:
+            jobs: Uma lista de empregos a serem filtrados.
+            filter_criteria: Um dicionário contendo os critérios de filtragem.
+
+        Returns:
+            Uma lista de empregos que correspondem a todos
+            os critérios fornecidos.
+        """
+
+        filtered_jobs = []
+
+        for job in jobs:
+            filters = [
+                job["industry"] == filter_criteria["industry"],
+                job["job_type"] == filter_criteria["job_type"],
+            ]
+
+            if all(filters):
+                filtered_jobs.append(
+                    {
+                        "id": job["id"],
+                        "industry": job["industry"],
+                        "job_type": job["job_type"],
+                    }
+                )
+
+        return filtered_jobs
