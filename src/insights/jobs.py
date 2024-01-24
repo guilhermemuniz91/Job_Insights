@@ -30,7 +30,22 @@ class ProcessJobs:
             return self.jobs_list
 
     def get_unique_job_types(self) -> List[str]:
-        pass
+        """
+        Retorna uma lista de valores únicos presentes na coluna `job_type`.
+
+        Args:
+            jobs_list: A lista de dicionários contendo os dados do arquivo.
+
+        Returns:
+            Uma lista de strings contendo os tipos de emprego únicos.
+        """
+
+        unique_job_types = set()
+        for job in self.jobs_list:
+            job_type = job["job_type"]
+            unique_job_types.add(job_type)
+
+        return list(unique_job_types)
 
     def filter_by_multiple_criteria(self) -> List[dict]:
         pass
